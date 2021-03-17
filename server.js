@@ -14,7 +14,7 @@ app.set("view engine", "handlebars");
 // app.use("/", routes);
 
 app.get("/", function(req, res){
-  res.render("home");
+  res.render("index");
 })
 
 app.listen(PORT, function() {
