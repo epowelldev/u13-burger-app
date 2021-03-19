@@ -1,33 +1,41 @@
-<header>
-  <h1>ORDER (AND THEN CONSUME) A BURGER!</h1>
-  <img>
-  <form class="order-a-burger">
-    <input type="text" id="order-burger-name" name="burger_name" placeholder="Type an order!"/>
-    <button type="submit" id="place-order">Place Your Order!</button>
-  </form>
-</header>
+<container class="overlay">
 
-<main>
-  <div style="container">
-    <div id="waiting">
-      <h2>Click to Consume!</h2>
-      <ol class="burgers">
-        {{#each burger_data}}
-          {{#unless this.devoured}}
-            <li><button data-id={{this.id}} class="consume-it" type="submit">{{this.burger_name}}</button></li>
-          {{/unless}}
-        {{/each}}
-      </ol>
+  <header class="jumbotron bg-warning">
+    <h1>ORDER A BURGER!</h1>
+    <img>
+    <form class="order-a-burger">
+      <input type="text" id="order-burger-name" name="burger_name" placeholder="Type an order!"/>
+      <button class="btn btn-secondary" type="submit" id="place-order">Place Your Order!</button>
+    </form>
+  </header>
+  <main class="container">
+
+    <div class="row">
+
+      <div id="waiting" class="col">
+        <h2>Click an order Consume!</h2>
+        <ol class="burgers">
+          {{#each burger_data}}
+            {{#unless this.devoured}}
+              <li><button data-id={{this.id}} class="consume-it btn btn-secondary" type="submit">{{this.burger_name}}</button></li>
+            {{/unless}}
+          {{/each}}
+        </ol>
+      </div>
+
+      <div id="consumed" class="col">
+        <h2>Consumed:</h2>
+        <ol class="burgers">
+          {{#each burger_data}}
+            {{#if this.devoured}}
+              <li><strong>{{this.burger_name}}</strong></li>
+            {{/if}}
+          {{/each}}
+        </ol>
+      </div>
+
     </div>
-    <div id="consumed">
-      <h2>Consumed:</h2>
-      <ol class="burgers">
-        {{#each burger_data}}
-          {{#if this.devoured}}
-            <li><pre>{{this.id}}. {{this.burger_name}}</pre></li>
-          {{/if}}
-        {{/each}}
-      </ol>
-    </div>
-  </div>
-</main>
+
+  </main>
+
+</container>
