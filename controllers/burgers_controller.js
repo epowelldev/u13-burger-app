@@ -11,7 +11,7 @@ router.get("/", function(req, res) {
 router.post("/orderBurger", function(req, res) {
   console.log(req.body);
   burger.orderBurger(req.body.burger_name, function(result) {
-      res.json(result);
+    res.json(result);
   });
 });
 
