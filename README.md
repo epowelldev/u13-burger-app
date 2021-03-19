@@ -11,7 +11,7 @@ It will then show up under the "click an order to consume" column.
 You may click on a burger to consume it, and move it to the consumed column.
 
 ### Img of Heroku Deployment
-![Image of Deployed Application](./assets/heroku-deploy.png "Deployed Screenshot")
+![Image of Deployed Application](./assets/heroku-deploy1.png "Deployed Screenshot")
 
 ### Links
 
