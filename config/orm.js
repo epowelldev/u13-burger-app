@@ -1,29 +1,23 @@
 const connection = require("./connection");
 
+//make a function to slim down orm code
+exectueQuery = function(query, callback) {
+  connection.query(query, function(err, res) {
+    if(err) throw err;
+    callback(res)
+  });
+}
+
 module.exports = {
-  selectAll(tableInput, callback) {
-    const queryString = `SELECT * FROM ${tableInput};`;
-    connection.query(queryString, (err, res) => {
-      if (err) throw err;
-      callback(res)
-    });
+  selectAll: function(tableInput, callback) {
+    exectueQuery(`SELECT * FROM ${tableInput}`, callback)
   },
 
-  insertOne(table, columns, values, callback) {
-    const queryString = `INSERT INTO ${table} (${columns.toString()}) VALUES (${values.length})`;
-    console.log(queryString);
-    connection.query(queryString, value, (err, res) => {
-      if(err) throw err;
-      callback(res);
-    });
+  insertOne: function(tableInput, condition, callback) {
+    exectueQuery(`INSERT INTO ${tableInput} (burger_name) VALUE ("${condition}")`, callback);
   },
 
-  updateOne(table, objectColumnsValues, condition, callback) {
-    const queryString = `UPDATE ${table} SET ${objToSql(objectColumnsValues)} WHERE ${condition}`;
-    console.log(queryString);
-    connection.query(queryString, (err, res) => {
-      if(err) throw err;
-      callback(res);
-    });
+  updateOne: function(tableInput, condition, callback) {
+    exectueQuery(`UPDATE ${tableInput} SET devoured=true WHERE id=${condition}`, callback);
   }
 }

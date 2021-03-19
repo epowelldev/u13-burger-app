@@ -1,19 +1,28 @@
 const util = require("util");
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: "3306",
-  user: "root",
-  password: "password",
-  database: "burgers_db"
-});
+let connection;
+
+if(process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: "3306",
+    user: "root",
+    password: "password",
+    database: "burgers_db"
+  });
+}
 
 connection.connect((error) => {
-  if(error) throw error;
-  console.log("Connected as ID " + connection.threadId);
+  if(error) {
+    console.error(`Error: ${error}`)
+  } else {
+    console.log(`Connected as ID: ${connection.threadId}`);
+  } 
 });
 
-connection.query = util.promisify(connection.query);
+// connection.query = util.promisify(connection.query);
 
 module.exports = connection;
